@@ -14,6 +14,27 @@ BEGIN
 	INSERT INTO AddressBook VALUES (@firstname ,@lastname ,@address ,@city ,@state ,@email ,@zipNo ,@PhoneNumber);
 END
 
-exec spAddRecordInAddressBook 'Kalpesh','Chindarkar','Sewri','Mumbai','Maharashtra','kalpesh@gmail.com',400015,992003699
+exec spAddRecordInAddressBook 'Kalpesh','Chindarkar','Sewri','Mumbai','Maharashtra','kalpesh@gmail.com',400015,9920036999
+spAddRecordInAddressBook 'Ketan','Chindarkar','24th street','Banglore','Karnataka','ketan@gmail.com',710015,9999914752
+
+CREATE PROC spEditPersonPhoneNumber(
+@firstname varchar(50),
+@PhoneNumber float
+)
+AS
+BEGIN
+	UPDATE AddressBook SET PhoneNumber=@PhoneNumber where firstname=@firstname;
+END
+
+spEditPersonPhoneNumber 'Kalpesh' 9920036999
+
+CREATE PROC spDeleteRowUsingFirstname
+@fname varchar(50)
+AS
+BEGIN
+	Delete from AddressBook where firstname=@fname;
+END
+
+spDeleteRowUsingFirstname 'Kalpesh'
 
 select * from AddressBook

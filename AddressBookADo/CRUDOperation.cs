@@ -73,5 +73,68 @@ namespace AddressBookADo
                 this.connection.Close();
             }
         }
+
+        public void DeleteRecordUsingFirstName()
+        {
+            try {
+                using (this.connection)
+                {
+                    SqlCommand command = new SqlCommand("spDeleteRowUsingFirstname", this.connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@fname", "Kalpesh");
+                    this.connection.Open();
+                    var result = command.ExecuteNonQuery();
+                    this.connection.Close();
+                    if(result != 0)
+                    {
+                        Console.WriteLine("Delete record successfully");
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                this.connection.Close();
+            }
+        }
+
+        public void RetrivePeopleBasedOnCity()
+        {
+            try
+            {
+                Contact c = new Contact();
+                using (this.connection)
+                {
+                    SqlCommand command = new SqlCommand("spRetrivePersonBasedOnCityOrState", this.connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@City", "Mumbai");
+                    this.connection.Open();
+                    SqlDataReader sqlDataReader = command.ExecuteReader();
+                    if (sqlDataReader.HasRows)
+                    {
+                        while (sqlDataReader.Read())
+                        {
+                            c.Firstname = sqlDataReader[1].ToString();
+                            c.Lastname = sqlDataReader[2].ToString();
+                            c.Address = sqlDataReader[3].ToString();
+                            c.City = sqlDataReader[4].ToString();
+                            c.State = sqlDataReader[5].ToString();
+                            c.Email = sqlDataReader[6].ToString();
+                            c.Zipno = Convert.ToInt32(sqlDataReader[7]);
+                            c.PhoneNo = Convert.ToInt64(sqlDataReader[8]);
+                            Console.WriteLine(c.Firstname + "\t" + c.Lastname + "\t" + c.Address + "\t" + c.City +
+                                "\t" + c.State + "\t" + c.Email + "\t" + c.Zipno + "\t" + c.PhoneNo);
+                        }
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
     }
 }

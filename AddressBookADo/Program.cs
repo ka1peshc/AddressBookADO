@@ -19,7 +19,9 @@ namespace AddressBookADo
 
             CRUDOperation crudOperation = new CRUDOperation();
             //crudOperation.InsertDataToAddressBook(contact);
-            crudOperation.UpdatePhoneNumber();
+            //crudOperation.UpdatePhoneNumber();
+            //crudOperation.DeleteRecordUsingFirstName();
+            crudOperation.RetrivePeopleBasedOnCity();
         }
     }
 }
