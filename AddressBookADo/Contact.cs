@@ -6,17 +6,14 @@ namespace AddressBookADo
 {
     class Contact
     {
-        private string firstname, lastname, address, city, state, email;
-        private int zipNo;
-        private long Phonenumber;
-
-        public string Firstname { get { return firstname; } set { firstname = value; } }
-        public string Lastname { get { return lastname; } set { lastname = value; } }
-        public string Address { get { return address; } set { address = value; } }
-        public string City { get { return city; } set { city = value; } }
-        public string State { get { return state; } set { state = value; } }
-        public string Email { get { return email; } set { email = value; } }
-        public int Zipno { get { return zipNo; } set { zipNo = value; } }
-        public long PhoneNo { get { return Phonenumber; } set { Phonenumber = value; } }
+        
+        public string Firstname { get; set; }
+        public string Lastname { get; set; }
+        public string Address { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public string Email { get; set; }
+        public int Zipno { get; set; }
+        public long PhoneNo { get; set; }
     }
 }
