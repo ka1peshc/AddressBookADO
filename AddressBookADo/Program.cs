@@ -22,7 +22,8 @@ namespace AddressBookADo
             //crudOperation.UpdatePhoneNumber();
             //crudOperation.DeleteRecordUsingFirstName();
             //crudOperation.RetrivePeopleBasedOnCity();
-            crudOperation.SizeofAddressBookBasedOnCity();
+            //crudOperation.SizeofAddressBookBasedOnCity();
+            crudOperation.SortedRecord();
         }
     }
 }
