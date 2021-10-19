@@ -18,7 +18,8 @@ namespace AddressBookADo
             contact.PhoneNo = 9892414408;
 
             CRUDOperation crudOperation = new CRUDOperation();
-            crudOperation.InsertDataToAddressBook(contact);
+            //crudOperation.InsertDataToAddressBook(contact);
+            crudOperation.UpdatePhoneNumber();
         }
     }
 }

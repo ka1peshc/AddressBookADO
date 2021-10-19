@@ -44,5 +44,34 @@ namespace AddressBookADo
                 this.connection.Close();
             }
         }
+
+        public void UpdatePhoneNumber()
+        {
+            try
+            {
+                using(this.connection)
+                {
+                    SqlCommand command = new SqlCommand("spEditPersonPhoneNumber", this.connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@firstname", "Kalpesh");
+                    command.Parameters.AddWithValue("@PhoneNumber", 9920036999);
+                    this.connection.Open();
+                    var result = command.ExecuteNonQuery();
+                    this.connection.Close();
+                    if(result != 0)
+                    {
+                        Console.WriteLine("updated record");
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                this.connection.Close();
+            }
+        }
     }
 }
