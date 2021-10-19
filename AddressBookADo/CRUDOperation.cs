@@ -203,5 +203,30 @@ namespace AddressBookADo
                 this.connection.Close();
             }
         }
+
+        public void SizeofAddressBookBasedOnType()
+        {
+            try
+            {
+                using (this.connection)
+                {
+                    SqlCommand cmd = new SqlCommand("spSizeofAddressBookBasedOnType", this.connection);
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@type", "Friend");
+                    this.connection.Open();
+                    int count = (int)cmd.ExecuteScalar();
+                    this.connection.Close();
+                    Console.WriteLine("Friend count is {0}", count);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                this.connection.Close();
+            }
+        }
     }
 }
