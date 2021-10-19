@@ -46,3 +46,17 @@ BEGIN
 END
 
 select * from AddressBook
+SELECT * FROM AddressBook ORDER BY firstname
+
+--UC9
+Alter table AddressBook Add ConnectionType varchar(50) NOT NULL DEFAULT 'Friend' WITH VALUES;
+UPDATE AddressBook SET ConnectionType='Family' where firstname='Ketan';
+
+CREATE PROC spSizeofAddressBookBasedOnType
+@type varchar(50)
+AS
+BEGIN
+	SELECT COUNT(firstname) from AddressBook where ConnectionType=@type;
+END
+
+spSizeofAddressBookBasedOnType 'Family'
