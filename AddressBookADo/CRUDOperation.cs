@@ -129,11 +129,41 @@ namespace AddressBookADo
                                 "\t" + c.State + "\t" + c.Email + "\t" + c.Zipno + "\t" + c.PhoneNo);
                         }
                     }
+                    this.connection.Close();
                 }
             }
             catch(Exception e)
             {
                 Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                this.connection.Close();
+            }
+        }
+
+        public void SizeofAddressBookBasedOnCity()
+        {
+            try
+            {
+                using (this.connection)
+                {
+                    SqlCommand cmd = new SqlCommand("spSizeofAddressBookBasedOnCity", this.connection);
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@city", "Mumbai");
+                    this.connection.Open();
+                    int count = (int)cmd.ExecuteScalar();
+                    this.connection.Close();
+                    Console.WriteLine("Mumbai count is {0}", count);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                this.connection.Close();
             }
         }
     }

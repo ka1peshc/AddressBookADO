@@ -37,4 +37,12 @@ END
 
 spDeleteRowUsingFirstname 'Kalpesh'
 
+
+CREATE PROC spSizeofAddressBookBasedOnCity
+@city varchar(50)
+AS
+BEGIN
+	SELECT COUNT(city) from AddressBook where city=@city;
+END
+
 select * from AddressBook
